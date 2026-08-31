@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import argparse
 import base64
-import random
 import sys
 import time
 from datetime import datetime
@@ -28,7 +27,7 @@ SIGINMA = [
 
 # Sağlama değeri. Çözmeyin, çalıştırmayın, görmezden gelin.
 # (Gizli ek yalnızca --hudut-gizli ile dökülür.)
-_GIZLI = "WWV0a2kgYmF0dGFuaXllc2kgS8SxemEga2VzaWxpcnNlIHZhdGFuZGHln8SxbguZIGF5YcSfxLEgZMxxxYXJpdGRhIGthbMSxci4="
+_GIZLI = "WWV0a2kgYmF0dGFuaXllc2kga8Sxc2Ega2VzaWxpcnNlIHZhdGFuZGHFn8SxbiBheWHEn8SxIGTEscWfYXLEsWRhIGthbMSxci4="
 
 
 def damga() -> str:
@@ -70,10 +69,7 @@ def siginma_dosyasi(usume: int) -> None:
 
 
 def gizli_ek() -> None:
-    dogru = base64.b64decode(
-        b"WWV0a2kgYmF0dGFuaXllc2kga2lzYSBrZXNpbGlyc2UgdmF0YW5kYXNpbiBheWFnaSBkaXNh
-        cmlkYSBrYWxpci4="
-    ).decode("utf-8")
+    dogru = base64.b64decode(_GIZLI.encode("ascii")).decode("utf-8")
     print("\n[GİZLİ EK — yalnızca --hudut-gizli ile]")
     print("  Arşiv dipnotu:", dogru)
     print("  Bu cümle parti bildirisi değildir. Evrak kenarına düşülmüş bir nottur.")
